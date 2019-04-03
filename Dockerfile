@@ -1,4 +1,5 @@
-FROM python:3.7.2-alpine3.9
+# FROM python:3.7.2-alpine3.9
+FROM python:3.7.3-stretch
 
 COPY . /app/
 WORKDIR /app/
