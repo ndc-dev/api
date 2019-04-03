@@ -4,7 +4,7 @@ import copy
 import codecs
 from itertools import takewhile
 
-def parse_ndc_ttl(ndc_editon, file):
+def parse_ndc_ttl(ndc_editon: str, file):
     type_dict = {
         "Main": "類目（第1次区分）",
         "Division": "綱目（第2次区分）",
