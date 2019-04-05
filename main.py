@@ -2,7 +2,7 @@ import json
 import codecs
 
 from fastapi import FastAPI, Body
-from starlette.responses import UJSONResponse
+from starlette.responses import HTMLResponse, UJSONResponse
 from starlette.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 app = FastAPI()
@@ -38,8 +38,20 @@ with zipfile.ZipFile("zips/ndc9.zip") as zfile:
     summary="JSONスキーマ",
     description="JSONスキーマの取得",
     response_description="JSONスキーマを返す"
+    content_type=HTMLResponse
 )
 async def index():
+    with codecs.open("./templates/index.html", "r", "utf-8") as file:
+        return file.read()
+
+
+@app.get("/schema",
+    tags=["index"],
+    summary="JSONスキーマ",
+    description="JSONスキーマの取得",
+    response_description="JSONスキーマを返す"
+)
+async def schema():
     with codecs.open("jsonschema.json", "r", "utf-8") as file:
         json_schema = json.load(file)
     return UJSONResponse(json_schema, headers={'Access-Control-Allow-Origin': '*'})
