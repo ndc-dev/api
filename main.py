@@ -11,11 +11,11 @@ app.add_middleware(CORSMiddleware, allow_origins=['*'])
 
 import io
 import zipfile
-from NDCParser import parse_ndc_ttl
+import ndc_parser
 
 with zipfile.ZipFile("zips/ndc8.zip") as zfile:
     with zfile.open("ndc8.ttl") as readfile:
-        ndc8_items_source = parse_ndc_ttl("8", io.TextIOWrapper(readfile, "utf-8"))
+        ndc8_items_source = ndc_parser.parse("8", io.TextIOWrapper(readfile, "utf-8"))
         ndc8_items = {}
         for key, item in ndc8_items_source.items():
             i = item.copy()
@@ -24,7 +24,7 @@ with zipfile.ZipFile("zips/ndc8.zip") as zfile:
 
 with zipfile.ZipFile("zips/ndc9.zip") as zfile:
     with zfile.open("ndc9.ttl") as readfile:
-        ndc9_items_source = parse_ndc_ttl("9", io.TextIOWrapper(readfile, "utf-8"))
+        ndc9_items_source = ndc_parser.parse("9", io.TextIOWrapper(readfile, "utf-8"))
         ndc9_items = {}
         for key, item in ndc9_items_source.items():
             i = item.copy()
