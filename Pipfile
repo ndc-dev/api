@@ -7,6 +7,8 @@ name = "pypi"
 uvicorn = "*"
 fastapi = "*"
 ujson = "*"
+jsonschema = "*"
+requests = "*"
 
 [dev-packages]
 autopep8 = "*"
