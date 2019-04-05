@@ -113,40 +113,40 @@ async def ndc9(ndc: str):
 
 
 
+# Fast API Sample
+# class Item(BaseModel):
+#     name: str
+#     description: str = None
+#     price: float
+#     tax: float = None
 
-class Item(BaseModel):
-    name: str
-    description: str = None
-    price: float
-    tax: float = None
+# @app.post("/items/{item_id}", tags=["FastAPI example"])
+# async def create_item(
+#     *,
+#     item_id: int,
+#     item: Item = Body(
+#         ...,
+#         example={
+#             "name": "Foo",
+#             "description": "A very nice Item",
+#             "price": 35.4,
+#             "tax": 3.2,
+#         },
+#     )
+# ):
+#     """
+#     Create an item with all the information:
 
-@app.post("/items/{item_id}", tags=["FastAPI example"])
-async def create_item(
-    *,
-    item_id: int,
-    item: Item = Body(
-        ...,
-        example={
-            "name": "Foo",
-            "description": "A very nice Item",
-            "price": 35.4,
-            "tax": 3.2,
-        },
-    )
-):
-    """
-    Create an item with all the information:
+#     * name: each item must have a name
+#     * description: a long description
+#     * price: required
+#     * tax: if the item doesn't have tax, you can omit this
+#     * tags: a set of unique tag strings for this item
+#     """
+#     results = {"item_id": item_id, "item": item}
+#     return results
 
-    * name: each item must have a name
-    * description: a long description
-    * price: required
-    * tax: if the item doesn't have tax, you can omit this
-    * tags: a set of unique tag strings for this item
-    """
-    results = {"item_id": item_id, "item": item}
-    return results
-
-@app.get("/elements/", tags=["FastAPI example"], deprecated=True)
-async def read_elements():
-    return [{"item_id": "Foo"}]
+# @app.get("/elements/", tags=["FastAPI example"], deprecated=True)
+# async def read_elements():
+#     return [{"item_id": "Foo"}]
 
