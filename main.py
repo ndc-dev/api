@@ -35,9 +35,9 @@ with zipfile.ZipFile("zips/ndc9.zip") as zfile:
 
 @app.get("/",
     tags=["index"],
-    summary="JSONスキーマ",
-    description="JSONスキーマの取得",
-    response_description="JSONスキーマを返す"
+    summary="トップページ",
+    description="トップページの表示",
+    response_description="トップページのHTMLを返す",
     content_type=HTMLResponse
 )
 async def index():
@@ -46,7 +46,7 @@ async def index():
 
 
 @app.get("/schema",
-    tags=["index"],
+    tags=["schema"],
     summary="JSONスキーマ",
     description="JSONスキーマの取得",
     response_description="JSONスキーマを返す"
