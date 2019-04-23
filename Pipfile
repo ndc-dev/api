@@ -9,6 +9,7 @@ fastapi = "*"
 ujson = "*"
 jsonschema = "*"
 requests = "*"
+ndc-parser = "*"
 
 [dev-packages]
 autopep8 = "*"

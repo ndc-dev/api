@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "344dd73817611087e836cdc4d1def4f948a6b35a7076203e04ae3fcef093b7a3"
+            "sha256": "9fcc36dac7f7c342f2076de626882c8c97d13d31fc41d239e4b269bc6c53dcd2"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -74,6 +74,13 @@
             "index": "pypi",
             "version": "==3.0.1"
         },
+        "ndc-parser": {
+            "hashes": [
+                "sha256:b1b7e469c9be5d483e335597c939f3bf7ca2ca72a5bbe722adbafa8d0b96dd15"
+            ],
+            "index": "pypi",
+            "version": "==0.1"
+        },
         "pydantic": {
             "hashes": [
                 "sha256:1205cd1213e8acee40a9ad7160b24de74484fd79ec3f09150b255896a3f506ab",
@@ -83,8 +90,7 @@
         },
         "pyrsistent": {
             "hashes": [
-                "sha256:3ca82748918eb65e2d89f222b702277099aca77e34843c5eb9d52451173970e2",
-                "sha256:98edf374a99bca84f675689642faef4387d7188b4d79e3a1053e0b4c04ca6963"
+                "sha256:3ca82748918eb65e2d89f222b702277099aca77e34843c5eb9d52451173970e2"
             ],
             "version": "==0.14.11"
         },
@@ -105,7 +111,6 @@
         },
         "starlette": {
             "hashes": [
-                "sha256:0e53c66365b9560f6643d791ab88759a669e521c305addf979b96458febe8928",
                 "sha256:9d48b35d1fc7521d59ae53c421297ab3878d3c7cd4b75266d77f6c73cccb78bb"
             ],
             "version": "==0.11.1"
