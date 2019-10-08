@@ -38,7 +38,7 @@ with zipfile.ZipFile("zips/ndc9.zip") as zfile:
     summary="トップページ",
     description="トップページの表示",
     response_description="トップページのHTMLを返す",
-    content_type=HTMLResponse
+    response_class=HTMLResponse
 )
 async def index():
     with codecs.open("./templates/index.html", "r", "utf-8") as file:

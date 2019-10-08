@@ -10,6 +10,7 @@ ujson = "*"
 jsonschema = "*"
 requests = "*"
 ndc-parser = "*"
+gunicorn = "*"
 
 [dev-packages]
 autopep8 = "*"
