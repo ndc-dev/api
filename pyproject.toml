@@ -1,0 +1,20 @@
+[project]
+name = "ndc-dev-api"
+version = "0.1.0"
+description = "NDC (Nippon Decimal Classification) API for Developer"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi>=0.141.1",
+    "gunicorn>=26.0.0",
+    "jsonschema>=4.26.0",
+    "ndc-parser>=0.1",
+    "requests>=2.34.2",
+    "ujson>=5.13.0",
+    "uvicorn>=0.52.1",
+]
+
+[dependency-groups]
+dev = [
+    "autopep8>=2.3.2",
+]

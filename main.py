@@ -2,8 +2,8 @@ import json
 import codecs
 
 from fastapi import FastAPI, Body
-from starlette.responses import HTMLResponse, UJSONResponse
-from starlette.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse, UJSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 app = FastAPI()
 app.add_middleware(CORSMiddleware, allow_origins=['*'])
