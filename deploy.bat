@@ -1,1 +1,1 @@
-SET GOOGLE_APPLICATION_CREDENTIALS=X:\ndc-dev-api.json & gcloud config set project ndc-dev-255301 & gcloud builds submit --tag gcr.io/ndc-dev-255301/api & gcloud run deploy api --image gcr.io/ndc-dev-255301/api:latest --memory 512Mi
+SET GOOGLE_APPLICATION_CREDENTIALS=X:\ndc-dev-api.json & gcloud config set project ndc-dev-255301 & gcloud builds submit --tag asia-northeast1-docker.pkg.dev/ndc-dev-255301/api/api:latest & gcloud run deploy api --image asia-northeast1-docker.pkg.dev/ndc-dev-255301/api/api:latest --region asia-northeast1
