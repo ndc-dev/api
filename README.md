@@ -67,11 +67,15 @@ http://127.0.0.1:8080/ で開きます。
 
 ## デプロイ
 
-Cloud Build でイメージをビルドし、Cloud Run（プロジェクト `ndc-dev-255301` /
-`asia-northeast1` / 512Mi）へデプロイします。
+インフラは [Terraform](terraform/) で管理しています（Cloud Runのメモリ・スケーリング・
+サービスアカウント等）。デプロイはイメージの差し替えのみで、Cloud Build で
+Artifact Registry へビルド・pushし、Cloud Run に反映します。
 
 ```
 gcloud config set project ndc-dev-255301
-gcloud builds submit --tag gcr.io/ndc-dev-255301/api
-gcloud run deploy api --image gcr.io/ndc-dev-255301/api:latest --region asia-northeast1 --memory 512Mi
+gcloud builds submit --tag asia-northeast1-docker.pkg.dev/ndc-dev-255301/api/api:latest
+gcloud run deploy api --image asia-northeast1-docker.pkg.dev/ndc-dev-255301/api/api:latest --region asia-northeast1
 ```
+
+以前は `gcr.io`（Container Registry）にpushしていましたが、gcr.io はこのプロジェクトで
+完全に廃止され読み取りもできなくなっていたため、Artifact Registry に移行しました。

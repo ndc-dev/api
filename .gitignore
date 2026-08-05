@@ -24,3 +24,15 @@ venv/
 
 # mypy
 .mypy_cache/
+
+# Terraform
+# state はGCSバックエンドのみに置く。ローカルキャッシュ・plan結果もコミットしない
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+tfplan
+*.tfplan
+crash.log
+crash.*.log
