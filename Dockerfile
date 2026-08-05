@@ -29,4 +29,8 @@ ENV PYTHONUNBUFFERED=1
 RUN useradd -m -u 1001 appuser && chown -R appuser:appuser /app
 USER appuser
 
-CMD exec gunicorn --bind :$PORT --workers 2 --threads 8 -k uvicorn.workers.UvicornWorker main:app
+# main.py がモジュール読み込み時にNDCデータ（1万数千件×2）をメモリに展開するため、
+# ワーカーを増やすとその分メモリに複製される。512Miの小規模インスタンスなので1ワーカーに絞り、
+# 同時実行数はCloud Run側のインスタンス数（自動スケール）に任せる。
+# --threads は sync/gthread worker専用のオプションで UvicornWorker（asyncio）には効かないため付けない。
+CMD exec gunicorn --bind :$PORT --workers 1 -k uvicorn_worker.UvicornWorker main:app

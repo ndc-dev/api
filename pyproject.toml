@@ -7,14 +7,15 @@ requires-python = ">=3.14"
 dependencies = [
     "fastapi>=0.141.1",
     "gunicorn>=26.0.0",
-    "jsonschema>=4.26.0",
     "ndc-parser>=0.1",
-    "requests>=2.34.2",
-    "ujson>=5.13.0",
+    "orjson>=3.11.9",
     "uvicorn>=0.52.1",
+    "uvicorn-worker>=0.4.0",
 ]
 
 [dependency-groups]
 dev = [
     "autopep8>=2.3.2",
+    "jsonschema>=4.26.0",
+    "requests>=2.34.2",
 ]
