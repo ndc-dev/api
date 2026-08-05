@@ -10,6 +10,7 @@ dependencies = [
     "ndc-parser>=0.1",
     "orjson>=3.11.9",
     "uvicorn>=0.52.1",
+    "uvicorn-worker>=0.4.0",
 ]
 
 [dependency-groups]
