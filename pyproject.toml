@@ -26,6 +26,11 @@ line-length = 120
 
 [tool.ruff.format]
 quote-style = "single"
+# ruff format は Markdown 内の Python コードブロックも既定で整形対象にする。
+# README の説明用コードまで書き換わって差分が膨らむので外す。
+# ruff check のほうは Markdown を見ない（"No Python files found" になる）ので、
+# lint と format のスコープを揃える意味もある。
+exclude = ["*.md"]
 
 [tool.ruff.lint]
 select = [
