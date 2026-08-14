@@ -8,7 +8,7 @@ COPY --from=ghcr.io/astral-sh/uv:0.12.0 /uv /uvx /bin/
 # Python依存関係のインストール
 # uv.lock をそのまま使うので requirements.txt は要らない。
 # --frozen: uv.lock を書き換えず、ロックどおりに入れる（ずれていれば失敗する）
-# --no-dev: autopep8 など開発用の依存は入れない
+# --no-dev: ruff など開発用の依存は入れない
 # --no-install-project: このプロジェクト自体はパッケージとして入れない
 COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen --no-dev --no-install-project
