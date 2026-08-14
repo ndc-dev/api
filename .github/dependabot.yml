@@ -1,0 +1,121 @@
+# Dependabot 設定
+# https://docs.github.com/code-security/dependabot/working-with-dependabot/dependabot-options-reference
+#
+# これまで dependabot.yml が無く、Dependabot alerts 起点のセキュリティ更新しか
+# 動いていなかったため、バージョン更新も定期的に回すようにする。
+#
+# 方針: minor/patch はグループ化して 1 PR にまとめ、major は個別 PR で判断する。
+#       リリース直後の不具合や yank を踏まないよう cooldown で寝かせてから PR を出す。
+
+version: 2
+
+updates:
+  # ---------------------------------------------------------------------------
+  # Python (uv: pyproject.toml + uv.lock)
+  # ---------------------------------------------------------------------------
+  - package-ecosystem: "uv"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "python"
+    commit-message:
+      prefix: "chore(deps)"
+    cooldown:
+      default-days: 7
+      semver-major-days: 30
+    groups:
+      python-minor-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # ---------------------------------------------------------------------------
+  # GitHub Actions (.github/workflows/)
+  # ---------------------------------------------------------------------------
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "ci(deps)"
+    cooldown:
+      default-days: 7
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # ---------------------------------------------------------------------------
+  # Docker ベースイメージ
+  # タグベースのため semver 単位の cooldown (semver-major-days 等) は指定できない
+  # ---------------------------------------------------------------------------
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "docker"
+    commit-message:
+      prefix: "build(deps)"
+    cooldown:
+      default-days: 7
+    groups:
+      container-images:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+    ignore:
+      # Python 3.15 のプレリリースは除外し、正式版 3.15 は許可する
+      - dependency-name: "python"
+        versions:
+          - ">= 3.15.a, < 3.15"
+
+  # ---------------------------------------------------------------------------
+  # Terraform (provider / module のバージョン制約)
+  # ---------------------------------------------------------------------------
+  - package-ecosystem: "terraform"
+    directory: "/terraform"
+    schedule:
+      interval: "monthly"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 2
+    labels:
+      - "dependencies"
+      - "terraform"
+    commit-message:
+      prefix: "build(deps)"
+    cooldown:
+      default-days: 14
+    groups:
+      terraform-providers:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
