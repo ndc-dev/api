@@ -1,9 +1,12 @@
+# COPY --from=<イメージ> は Dependabot が解析しないため、ステージとして持ち込む
+FROM ghcr.io/astral-sh/uv:0.12.5 AS uv
+
 FROM python:3.14-slim
 
 WORKDIR /app
 
 # uv を公式イメージから取り込む（再現性のためバージョンを固定する）
-COPY --from=ghcr.io/astral-sh/uv:0.12.0 /uv /uvx /bin/
+COPY --from=uv /uv /uvx /bin/
 
 # Python依存関係のインストール
 # uv.lock をそのまま使うので requirements.txt は要らない。
