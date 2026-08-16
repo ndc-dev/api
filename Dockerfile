@@ -1,7 +1,7 @@
 # COPY --from=<イメージ> は Dependabot が解析しないため、ステージとして持ち込む
 FROM ghcr.io/astral-sh/uv:0.12.5 AS uv
 
-FROM python:3.14-slim
+FROM python:3.14.7-slim
 
 WORKDIR /app
 
