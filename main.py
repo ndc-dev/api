@@ -1,4 +1,3 @@
-import codecs
 import io
 import json
 import zipfile
@@ -27,6 +26,12 @@ with zipfile.ZipFile('zips/ndc9.zip') as zfile, zfile.open('ndc9.ttl') as readfi
         del i['source']
         ndc9_items[key] = i
 
+with open('./templates/index.html', encoding='utf-8') as file:
+    index_html = file.read()
+
+with open('jsonschema.json', encoding='utf-8') as file:
+    json_schema = json.load(file)
+
 
 @app.get(
     '/',
@@ -37,8 +42,7 @@ with zipfile.ZipFile('zips/ndc9.zip') as zfile, zfile.open('ndc9.ttl') as readfi
     response_class=HTMLResponse,
 )
 async def index():
-    with codecs.open('./templates/index.html', 'r', 'utf-8') as file:
-        return file.read()
+    return index_html
 
 
 @app.get(
@@ -49,8 +53,6 @@ async def index():
     response_description='JSONスキーマを返す',
 )
 async def schema():
-    with codecs.open('jsonschema.json', 'r', 'utf-8') as file:
-        json_schema = json.load(file)
     return ORJSONResponse(json_schema, headers={'Access-Control-Allow-Origin': '*'})
 
 
