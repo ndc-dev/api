@@ -1,9 +1,9 @@
 # COPY --from=<イメージ> は Dependabot が解析しないため、ステージとして持ち込む
-FROM ghcr.io/astral-sh/uv:0.13.0 AS uv
+FROM ghcr.io/astral-sh/uv:0.13.1 AS uv
 
 # タグに Debian のコードネームを書く。無印の python:3.14.7-slim は既定のスイートを
 # 指すエイリアスで、上流が既定を切り替えると土台の Debian が黙って変わるため
-FROM python:3.14.7-slim-trixie
+FROM python:3.14.8-slim-trixie
 
 WORKDIR /app
 
