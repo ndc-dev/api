@@ -89,12 +89,6 @@ updates:
         update-types:
           - "minor"
           - "patch"
-    ignore:
-      # Python 3.15 は当面上げない。依存の多くに 3.15 用の wheel がまだ無い（2026-10）。
-      # 上げるときは .python-version と一緒に
-      - dependency-name: "python"
-        versions:
-          - ">= 3.15.a"
 
   # ---------------------------------------------------------------------------
   # Terraform (provider / module のバージョン制約)
