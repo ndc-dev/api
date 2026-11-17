@@ -89,6 +89,12 @@ updates:
         update-types:
           - "minor"
           - "patch"
+    ignore:
+      # Python 3.16 はアルファ版。wheel が揃わず cffi などのビルドが落ちる（2026-11）。
+      # container-images グループに紛れて入るので、正式版が出るまで止める
+      - dependency-name: "python"
+        versions:
+          - ">= 3.16.a"
 
   # ---------------------------------------------------------------------------
   # Terraform (provider / module のバージョン制約)
